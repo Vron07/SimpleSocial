@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Social</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@200&family=Russo+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'simplesocial/css/master.css' %}">
+
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg mynav" role="navigation" id="navbar">
+            <div class="container-fluid">
+                <p>
+                    <a class="navbar-brand mynav custom-btn btn-5" href="{% url 'home' %}">Tweet</a>
+                    <a class="navbar-brand mynav custom-btn btn-5" href="{% url 'info' %}">Info</a>
+                </p>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a class="nav-link active custom-btn btn-6" href="{% url 'posts:create' %}">Post</a></li>
+                        <li><a class="nav-link active custom-btn btn-6" href="{% url 'groups:all' %}">Groups</a></li>
+                        <li><a class="nav-link active custom-btn btn-6" href="{% url 'groups:create' %}">Create Group</a></li>
+                        <li><a class="nav-link active custom-btn btn-6" href="{% url 'accounts:logout' %}">Log Out</a></li>
+                    {% else %}
+                        <li><a class="nav-link active custom-btn btn-6" href="{% url 'groups:all' %}">Groups</a></li>
+                        <li><a class="nav-link active custom-btn btn-6" href="{% url 'accounts:login' %}">Log In</a></li>
+                        <li><a class="nav-link active custom-btn btn-6" href="{% url 'accounts:signup' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        
+        <!--Content before waves-->
+        <div class="inner-header flex ">
+       
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+        
+        <!--Waves Container-->
+        <div>
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+            </svg>
+        </div>
+        <!--Waves end-->
+    </div>
+    
+    
+    <script type="text/javascript" src="{% static 'simplesocial/js/master.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
